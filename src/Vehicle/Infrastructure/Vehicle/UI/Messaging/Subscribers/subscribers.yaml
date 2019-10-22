@@ -1,0 +1,5 @@
+services:
+  Skeleton\Vehicle\Infrastructure\Vehicle\UI\Messaging\Subscribers\VehicleWasCreatedSubscriber:
+    class:
+    arguments:
+      - '@Skeleton\Vehicle\Domain\Vehicle\Model\VehicleRepository'

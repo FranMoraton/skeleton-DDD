@@ -1,0 +1,71 @@
+version: '3.6'
+services:
+  skeleton_api:
+    container_name: skeleton_api
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      args:
+        xdebug_remote_host: 172.21.0.1
+        xdebug_remote_port: 9999
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/var/www/html
+    networks:
+      - skeleton_connection
+
+  skeleton_nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: skeleton_nginx
+    restart: always
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8033:80
+    depends_on:
+      - skeleton_api
+    networks:
+      - skeleton_connection
+
+  skeleton_mysql:
+    container_name: skeleton_mysql
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 3308:3306
+    volumes:
+      - /var/lib/mysql-docker-skeleton:/var/lib/mysql
+    networks:
+      - skeleton_connection
+
+  skeleton_rabbitmq:
+    container_name: skeleton_rabbitmq
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/rabbitmq/Dockerfile
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST}
+    ports:
+      - 5675:5672
+      - 15675:15672
+    networks:
+      - skeleton_connection
+
+networks:
+  skeleton_connection:
+    driver: bridge

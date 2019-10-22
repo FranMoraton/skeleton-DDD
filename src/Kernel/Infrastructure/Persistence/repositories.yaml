@@ -1,0 +1,5 @@
+services:
+    Skeleton\Kernel\Domain\Model\StoredEventRepository:
+        class: Skeleton\Kernel\Infrastructure\Persistence\Doctrine\DoctrineStoredEventRepository
+        arguments:
+          - '@doctrine.orm.entity_manager'

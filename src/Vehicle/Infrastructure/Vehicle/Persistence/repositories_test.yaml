@@ -1,0 +1,3 @@
+services:
+  Skeleton\Vehicle\Domain\Vehicle\Model\VehicleRepository:
+    class: Skeleton\Vehicle\Infrastructure\Vehicle\Persistence\InMemory\InMemoryVehicleRepository

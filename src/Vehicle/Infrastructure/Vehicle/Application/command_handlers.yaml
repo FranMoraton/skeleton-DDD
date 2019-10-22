@@ -1,0 +1,17 @@
+services:
+    Skeleton\Vehicle\Application\Vehicle\Command\CreateVehicleCommandHandler:
+        class: Skeleton\Vehicle\Application\Vehicle\Command\CreateVehicleCommandHandler
+        public: true
+        arguments:
+          - '@Skeleton\Vehicle\Domain\Vehicle\Model\VehicleRepository'
+          - '@Skeleton\Vehicle\Domain\Vehicle\Specification\VehicleNameDoesNotExistSpecification'
+        tags:
+          - { name: tactician.handler, command: Skeleton\Vehicle\Application\Vehicle\Command\CreateVehicleCommand, typehints: true, bus: command }
+
+    Skeleton\Vehicle\Application\Vehicle\Command\DeleteVehicleCommandHandler:
+      class: Skeleton\Vehicle\Application\Vehicle\Command\DeleteVehicleCommandHandler
+      public: true
+      arguments:
+        - '@Skeleton\Vehicle\Domain\Vehicle\Specification\VehicleExistSpecification'
+      tags:
+        - { name: tactician.handler, command: Skeleton\Vehicle\Application\Vehicle\Command\DeleteVehicleCommand, typehints: true, bus: command }

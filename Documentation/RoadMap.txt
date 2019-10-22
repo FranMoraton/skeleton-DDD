@@ -1,0 +1,16 @@
+----> Fix dependency loading in test
+----> ErrorHandle
+----> ValueObject Location and mapping to doctrine
+----> JWT / oauth
+----> Consumers
+----> Supervisor / workers
+----> logger (elk)
+----> CI/CD
+
+----> projection? Mapper/ hydrate sync?¿
+
+----> Refactor queueEventNotification (factory+command)
+----> Refactor for consumers (Command+Decorator-->commandBus)
+----> CommandBus for each context & break tactician dependency ---> commandHandler dependency cant accept parameter
+----> Recovery and Time Travel with event Store
+----> Break Context into Services

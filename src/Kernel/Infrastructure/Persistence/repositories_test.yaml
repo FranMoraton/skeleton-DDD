@@ -1,0 +1,3 @@
+services:
+    Skeleton\Kernel\Domain\Model\StoredEventRepository:
+        class: Skeleton\Kernel\Infrastructure\Persistence\InMemory\InMemoryStoredEventRepository

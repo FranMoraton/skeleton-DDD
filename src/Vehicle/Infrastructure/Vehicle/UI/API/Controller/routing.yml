@@ -1,0 +1,14 @@
+vehicle.createVehicle:
+  path: /skeletonapi/vehicle
+  methods: [POST]
+  controller: Skeleton\Vehicle\Infrastructure\Vehicle\UI\API\Controller\VehicleController:createVehicle
+
+vehicle.getVehicles:
+  path: /skeletonapi/vehicle
+  methods: [GET]
+  controller: Skeleton\Vehicle\Infrastructure\Vehicle\UI\API\Controller\VehicleController:getVehicles
+
+vehicle.deleteVehicle:
+  path: /skeletonapi/vehicle/{id}
+  methods: [DELETE]
+  controller: Skeleton\Vehicle\Infrastructure\Vehicle\UI\API\Controller\VehicleController:deleteVehicle

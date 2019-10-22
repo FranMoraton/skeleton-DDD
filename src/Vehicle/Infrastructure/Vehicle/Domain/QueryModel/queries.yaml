@@ -1,0 +1,10 @@
+services:
+  Skeleton\Vehicle\Domain\Vehicle\QueryModel\VehicleByCriteriaQuery:
+    class: Skeleton\Vehicle\Infrastructure\Vehicle\Domain\QueryModel\Doctrine\DoctrineVehicleByCriteriaQuery
+    arguments:
+      - '@doctrine.dbal.default_connection'
+
+  Skeleton\Vehicle\Domain\Vehicle\QueryModel\VehicleByIdQuery:
+    class: Skeleton\Vehicle\Infrastructure\Vehicle\Domain\QueryModel\Doctrine\DoctrineVehicleByIdQuery
+    arguments:
+      - '@doctrine.dbal.default_connection'

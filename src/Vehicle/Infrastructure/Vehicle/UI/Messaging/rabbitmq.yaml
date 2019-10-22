@@ -1,0 +1,44 @@
+old_sound_rabbit_mq:
+  producers:
+    vehicle:
+      connection:       default
+      exchange_options: {name: 'skeleton-vehicle', type: topic}
+
+    vehicleDelay:
+      connection:       default
+      exchange_options: {name: 'skeleton-vehicleDelay', type: topic}
+  consumers:
+    vehicle:
+      connection:       default
+      exchange_options: {name: 'skeleton-vehicle', type: topic}
+      queue_options:
+        name: 'skeleton-vehicle'
+        routing_keys:
+          - 'skeleton.vehicle.event.#'
+        arguments:
+          x-dead-letter-exchange:    ['S', 'skeleton-failure']
+          x-dead-letter-routing-key: ['S', 'skeleton-vehicle-failed']
+      callback:         consumer.vehicle
+      qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}
+
+    vehicleDelay:
+      connection:       default
+      exchange_options: {name: 'skeleton-vehicleDelay', type: topic}
+      queue_options:
+        name: 'skeleton-vehicleDelay'
+        routing_keys:
+          - '#'
+        arguments:
+          x-dead-letter-exchange:    ['S', 'skeleton-vehicle']
+      callback:         consumer.vehicle
+      qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}
+
+    vehicle-failure:
+      connection:       default
+      exchange_options: {name: 'skeleton-failure', type: topic}
+      queue_options:
+        name: skeleton-vehicle-failure
+        routing_keys:
+          - 'skeleton-vehicle-failed'
+      callback:         consumer.vehicle
+      qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}

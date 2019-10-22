@@ -1,0 +1,8 @@
+services:
+  Skeleton\Vehicle\Application\Vehicle\Query\GetVehicleByCriteriaQueryHandler:
+    class: Skeleton\Vehicle\Application\Vehicle\Query\GetVehicleByCriteriaQueryHandler
+    public: true
+    arguments:
+      - '@Skeleton\Vehicle\Domain\Vehicle\QueryModel\VehicleByCriteriaQuery'
+    tags:
+      - { name: tactician.handler, command: Skeleton\Vehicle\Application\Vehicle\Query\GetVehicleByCriteriaQuery, typehints: true, bus: query }

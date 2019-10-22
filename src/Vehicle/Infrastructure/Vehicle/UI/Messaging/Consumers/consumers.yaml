@@ -1,0 +1,6 @@
+services:
+  consumer.vehicle:
+    class: Skeleton\Vehicle\Infrastructure\Vehicle\UI\Messaging\Consumers\VehicleConsumer
+    autowire: true
+    arguments:
+       - '@service_container'

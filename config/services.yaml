@@ -1,0 +1,87 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Skeleton\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    controllers:
+        namespace: Skeleton\
+        resource: '../src/*/Infrastructure/UI/*/Controller/*'
+        tags: ['controller.service_arguments']
+
+    controllers_context:
+        namespace: Skeleton\
+        resource: '../src/*/Infrastructure/*/UI/*/Controller/*'
+        tags: ['controller.service_arguments']
+
+    console:
+        namespace: Skeleton\
+        resource: '../src/*/Infrastructure/*/UI/*/Command/*'
+        tags:
+            - { name: console.command }
+
+    querys:
+        namespace: Skeleton\
+        resource: '../src/*/Application/Query/*QueryHandler.php'
+        public: true
+        tags:
+            - { name: tactician.handler, typehints: true, bus: query }
+
+    querysContext:
+        namespace: Skeleton\
+        resource: '../src/*/Application/*/Query/*QueryHandler.php'
+        public: true
+        tags:
+            - { name: tactician.handler, typehints: true, bus: query }
+
+    commands:
+        namespace: Skeleton\
+        resource: '../src/*/Application/Command/*CommandHandler.php'
+        public: true
+        tags:
+            - { name: tactician.handler, typehints: true, bus: command }
+
+    commandsContext:
+        namespace: Skeleton\
+        resource: '../src/*/Application/*/Command/*CommandHandler.php'
+        public: true
+        tags:
+            - { name: tactician.handler, typehints: true, bus: command }
+
+    Skeleton\Kernel\Application\Command\CommandBus:
+        class: Skeleton\Kernel\Infrastructure\Application\TacticianCommandBus
+        arguments:
+            - "@tactician.commandbus.command"
+
+    Skeleton\Kernel\Application\Query\QueryBus:
+        class: Skeleton\Kernel\Infrastructure\Application\TacticianQueryBus
+        arguments:
+            - "@tactician.commandbus.query"
+
+    app.middleware.event_stream_persist:
+        class: Skeleton\Kernel\Infrastructure\Domain\Event\DomainEventStreamPersistMiddleware
+        arguments:
+            - '@Skeleton\\Kernel\\Domain\\Service\\EventAppender'
+
+    app.middleware.event_stream_publish:
+        class: Skeleton\Kernel\Infrastructure\Domain\Event\DomainEventStreamPublishMiddleware
+        arguments:
+            - "@Skeleton\\Kernel\\Application\\EventNotification"
+
+    Skeleton\Kernel\Application\EventNotification:
+        class: Skeleton\Kernel\Infrastructure\Application\QueueEventNotification
+        arguments:
+            - "@service_container"

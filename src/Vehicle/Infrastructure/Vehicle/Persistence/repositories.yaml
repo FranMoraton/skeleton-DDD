@@ -1,0 +1,5 @@
+services:
+    Skeleton\Vehicle\Domain\Vehicle\Model\VehicleRepository:
+        class: Skeleton\Vehicle\Infrastructure\Vehicle\Persistence\Doctrine\DoctrineVehicleRepository
+        arguments:
+          - '@doctrine.orm.entity_manager'

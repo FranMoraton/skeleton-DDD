@@ -1,0 +1,23 @@
+Skeleton\Vehicle\Domain\Vehicle\Model\VehicleState:
+    type: entity
+    table: vehicle
+    repositoryClass: Skeleton\Vehicle\Infrastructure\Vehicle\Persistence\Doctrine\DoctrineVehicleRepository
+    indexes:
+        name_index:
+            columns: [ name ]
+    id:
+        id:
+            type: string
+    fields:
+        name:
+            type: string
+        driver:
+            type: string
+        latitude:
+            type: string
+            nullable: true
+            default: null
+        longitude:
+            type: string
+            nullable: true
+            default: null

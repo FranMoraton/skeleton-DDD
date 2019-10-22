@@ -1,0 +1,15 @@
+# Library documentation: http://tactician.thephpleague.com/
+# Bundle documentation: https://github.com/thephpleague/tactician-bundle/blob/v1.0/README.md
+tactician:
+    default_bus: command
+    commandbus:
+        command:
+            middleware:
+                - tactician.middleware.locking
+                - app.middleware.event_stream_publish
+                - tactician.middleware.doctrine_rollback_only
+                - app.middleware.event_stream_persist
+                - tactician.commandbus.command.middleware.command_handler
+        query:
+            middleware:
+                - tactician.commandbus.query.middleware.command_handler

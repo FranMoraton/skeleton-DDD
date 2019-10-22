@@ -1,0 +1,6 @@
+services:
+  Skeleton\Vehicle\Domain\Vehicle\QueryModel\VehicleByCriteriaQuery:
+    class: Skeleton\Vehicle\Infrastructure\Vehicle\Domain\QueryModel\InMemory\InMemoryVehicleByCriteriaQuery
+
+  Skeleton\Vehicle\Domain\Vehicle\QueryModel\VehicleByIdQuery:
+    class: Skeleton\Vehicle\Infrastructure\Vehicle\Domain\QueryModel\InMemory\InMemoryVehicleByIdQuery

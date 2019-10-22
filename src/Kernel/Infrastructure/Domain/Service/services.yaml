@@ -1,0 +1,5 @@
+services:
+    Skeleton\\Kernel\\Domain\\Service\\EventAppender:
+        class: Skeleton\Kernel\Domain\Service\EventAppender
+        arguments:
+          - '@Skeleton\Kernel\Domain\Model\StoredEventRepository'

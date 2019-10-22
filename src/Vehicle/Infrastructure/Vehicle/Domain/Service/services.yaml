@@ -1,0 +1,12 @@
+services:
+  Skeleton\Vehicle\Domain\Vehicle\Specification\VehicleNameDoesNotExistSpecification:
+    class: Skeleton\Vehicle\Domain\Vehicle\Specification\VehicleNameDoesNotExistSpecification
+    public: true
+    arguments:
+      - '@Skeleton\Vehicle\Domain\Vehicle\QueryModel\VehicleByCriteriaQuery'
+
+  Skeleton\Vehicle\Domain\Vehicle\Specification\VehicleExistSpecification:
+    class: Skeleton\Vehicle\Domain\Vehicle\Specification\VehicleExistSpecification
+    public: true
+    arguments:
+      - '@Skeleton\Vehicle\Domain\Vehicle\QueryModel\VehicleByIdQuery'
