@@ -10,6 +10,7 @@ use Skeleton\BasketTeam\Domain\LineUp\Model\LineUp;
 
 final class LineUpSelectorService
 {
+    private const LINE_UP_PLAYERS = 5;
     /**
      * @var BasketTeamByCriteriaQuery
      */
@@ -66,7 +67,7 @@ final class LineUpSelectorService
             }
         }
 
-        if (0 < count($bestLineUp)) {
+        if (self::LINE_UP_PLAYERS !== count($bestLineUp)) {
             return [];
         }
 
