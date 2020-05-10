@@ -1,0 +1,44 @@
+old_sound_rabbit_mq:
+  producers:
+    basketTeam:
+      connection:       default
+      exchange_options: {name: 'skeleton-basketTeam', type: topic}
+
+    basketTeamDelay:
+      connection:       default
+      exchange_options: {name: 'skeleton-basketTeamDelay', type: topic}
+  consumers:
+    basketTeam:
+      connection:       default
+      exchange_options: {name: 'skeleton-basketTeam', type: topic}
+      queue_options:
+        name: 'skeleton-basketTeam'
+        routing_keys:
+          - 'skeleton.basketTeam.event.#'
+        arguments:
+          x-dead-letter-exchange:    ['S', 'skeleton-failure']
+          x-dead-letter-routing-key: ['S', 'skeleton-basketTeam-failed']
+      callback:         consumer.basketTeam
+      qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}
+
+    basketTeamDelay:
+      connection:       default
+      exchange_options: {name: 'skeleton-basketTeamDelay', type: topic}
+      queue_options:
+        name: 'skeleton-basketTeamDelay'
+        routing_keys:
+          - '#'
+        arguments:
+          x-dead-letter-exchange:    ['S', 'skeleton-basketTeam']
+      callback:         consumer.basketTeam
+      qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}
+
+    basketTeam-failure:
+      connection:       default
+      exchange_options: {name: 'skeleton-failure', type: topic}
+      queue_options:
+        name: skeleton-basketTeam-failure
+        routing_keys:
+          - 'skeleton-basketTeam-failed'
+      callback:         consumer.basketTeam
+      qos_options:      {prefetch_size: 0, prefetch_count: 1, global: false}

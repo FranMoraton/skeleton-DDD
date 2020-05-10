@@ -1,0 +1,10 @@
+services:
+    Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamPlayerByNumberQuery:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\Domain\QueryModel\Doctrine\DoctrineBasketTeamPlayerByNumberQuery
+        arguments:
+          - '@doctrine.dbal.default_connection'
+
+    Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamByCriteriaQuery:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\Domain\QueryModel\Doctrine\DoctrineBasketTeamByCriteriaQuery
+        arguments:
+          - '@doctrine.dbal.default_connection'

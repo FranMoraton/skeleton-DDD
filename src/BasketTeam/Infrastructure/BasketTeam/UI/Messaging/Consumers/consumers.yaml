@@ -1,0 +1,6 @@
+services:
+    consumer.basketTeam:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\UI\Messaging\Consumers\BasketTeamConsumer
+        autowire: true
+        arguments:
+          - '@service_container'

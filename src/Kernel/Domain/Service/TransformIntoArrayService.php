@@ -37,4 +37,30 @@ final class TransformIntoArrayService
 
         return $arrayReturned;
     }
+
+    public static function removeKeyIds(array $data): array
+    {
+        $output = [];
+        foreach ($data as $key => $item) {
+            if (false === is_array($item) && false === self::keyCanBeRemoved($key)) {
+                $output[$key] = $item;
+            }
+            if (false === is_array($item) && self::keyCanBeRemoved($key)) {
+                $output[] = $item;
+            }
+            if (is_array($item) && false === self::keyCanBeRemoved($key)) {
+                $output[$key] = self::removeKeyIds($item);
+            }
+            if (is_array($item) && self::keyCanBeRemoved($key)) {
+                $output[] = self::removeKeyIds($item);
+            }
+        }
+
+        return $output;
+    }
+
+    private static function keyCanBeRemoved($key): bool
+    {
+        return is_numeric($key) || Uuid::isValid($key) || '' === ($key);
+    }
 }

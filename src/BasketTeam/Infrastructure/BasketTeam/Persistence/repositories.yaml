@@ -1,0 +1,5 @@
+services:
+    Skeleton\BasketTeam\Domain\BasketTeam\Model\BasketTeamRepository:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\Persistence\Doctrine\DoctrineBasketTeamRepository
+        arguments:
+          - '@doctrine.orm.entity_manager'

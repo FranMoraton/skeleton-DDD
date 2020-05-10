@@ -1,0 +1,6 @@
+services:
+    Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamPlayerByNumberQuery:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\Domain\QueryModel\InMemory\InMemoryBasketTeamPlayerByNumberQuery
+
+    Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamByCriteriaQuery:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\Domain\QueryModel\InMemory\InMemoryBasketTeamByCriteriaQuery

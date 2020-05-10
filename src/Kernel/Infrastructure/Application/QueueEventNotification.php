@@ -12,7 +12,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class QueueEventNotification implements EventNotification
 {
     private const CONTEXT_EXCHANGES_LOADED = [
-        'example' => 'example'
+        'basketTeam' => 'basketTeam',
+        'vehicle' => 'vehicle',
     ];
 
     /**

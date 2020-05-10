@@ -1,0 +1,16 @@
+services:
+    Skeleton\BasketTeam\Application\BasketTeam\Command\AddBasketTeamPlayerCommandHandler:
+        class: Skeleton\BasketTeam\Application\BasketTeam\Command\AddBasketTeamPlayerCommandHandler
+        public: true
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\Specification\NumberExistInTheTeamSpecification'
+        tags:
+          - { name: tactician.handler, command: Skeleton\BasketTeam\Application\BasketTeam\Command\AddBasketTeamPlayerCommand, typehints: true, bus: command }
+
+    Skeleton\BasketTeam\Application\BasketTeam\Command\RemoveBasketTeamPlayerCommandHandler:
+        class: Skeleton\BasketTeam\Application\BasketTeam\Command\RemoveBasketTeamPlayerCommandHandler
+        public: true
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\Specification\NumberExistInTheTeamSpecification'
+        tags:
+          - { name: tactician.handler, command: Skeleton\BasketTeam\Application\BasketTeam\Command\RemoveBasketTeamPlayerCommand, typehints: true, bus: command }

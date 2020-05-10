@@ -1,0 +1,10 @@
+services:
+    Skeleton\BasketTeam\Infrastructure\BasketTeam\UI\Messaging\Subscribers\BasketTeamPlayerWasAddedSubscriber:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\UI\Messaging\Subscribers\BasketTeamPlayerWasAddedSubscriber
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\Model\BasketTeamRepository'
+
+    Skeleton\BasketTeam\Infrastructure\BasketTeam\UI\Messaging\Subscribers\BasketTeamPlayerWasRemovedSubscriber:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\UI\Messaging\Subscribers\BasketTeamPlayerWasRemovedSubscriber
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\Model\BasketTeamRepository'

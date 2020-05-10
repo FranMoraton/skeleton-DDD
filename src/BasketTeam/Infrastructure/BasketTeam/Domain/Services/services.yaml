@@ -1,0 +1,12 @@
+services:
+    Skeleton\BasketTeam\Domain\BasketTeam\Specification\NumberExistInTheTeamSpecification:
+        class: Skeleton\BasketTeam\Domain\BasketTeam\Specification\NumberExistInTheTeamSpecification
+        public: true
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamPlayerByNumberQuery'
+
+    Skeleton\BasketTeam\Domain\BasketTeam\Services\LineUpSelectorService:
+        class: Skeleton\BasketTeam\Domain\BasketTeam\Services\LineUpSelectorService
+        public: true
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamByCriteriaQuery'

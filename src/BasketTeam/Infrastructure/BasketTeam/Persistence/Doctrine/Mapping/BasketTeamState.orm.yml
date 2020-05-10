@@ -1,0 +1,14 @@
+Skeleton\BasketTeam\Domain\BasketTeam\Model\BasketTeamState:
+    type: entity
+    table: team
+    repositoryClass: Skeleton\BasketTeam\Infrastructure\BasketTeam\Persistence\Doctrine\DoctrineBasketTeamRepository
+    indexes:
+        name_index:
+            columns: [ name ]
+    id:
+        id:
+            type: string
+    fields:
+        name:
+            type: string
+            length: 50

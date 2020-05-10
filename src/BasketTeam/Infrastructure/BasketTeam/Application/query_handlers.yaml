@@ -1,0 +1,24 @@
+services:
+    Skeleton\BasketTeam\Application\BasketTeam\Query\GetBasketTeamByCriteriaQueryHandler:
+        class: Skeleton\BasketTeam\Application\BasketTeam\Query\GetBasketTeamByCriteriaQueryHandler
+        public: true
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamByCriteriaQuery'
+        tags:
+          - { name: tactician.handler, command: Skeleton\BasketTeam\Application\BasketTeam\Query\GetBasketTeamByCriteriaQuery, typehints: true, bus: query }
+
+    Skeleton\BasketTeam\Application\BasketTeam\Query\GetBasketTeamPlayerByNumberQueryHandler:
+        class: Skeleton\BasketTeam\Application\BasketTeam\Query\GetBasketTeamPlayerByNumberQueryHandler
+        public: true
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\QueryModel\BasketTeamPlayerByNumberQuery'
+        tags:
+          - { name: tactician.handler, command: \Skeleton\BasketTeam\Application\BasketTeam\Query\GetBasketTeamPlayerByNumberQuery, typehints: true, bus: query }
+
+    Skeleton\BasketTeam\Application\BasketTeam\Query\GetBetterTeamByLineUpQueryHandler:
+        class: Skeleton\BasketTeam\Application\BasketTeam\Query\GetBetterTeamByLineUpQueryHandler
+        public: true
+        arguments:
+          - '@Skeleton\BasketTeam\Domain\BasketTeam\Services\LineUpSelectorService'
+        tags:
+          -  { name: tactician.handler, command: Skeleton\BasketTeam\Application\BasketTeam\Query\GetBetterTeamByLineUpQuery, typehints: true, bus: query}

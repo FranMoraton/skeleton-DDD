@@ -1,0 +1,3 @@
+services:
+    Skeleton\BasketTeam\Domain\BasketTeam\Model\BasketTeamRepository:
+        class: Skeleton\BasketTeam\Infrastructure\BasketTeam\Persistence\InMemory\InMemoryBasketTeamRepository
